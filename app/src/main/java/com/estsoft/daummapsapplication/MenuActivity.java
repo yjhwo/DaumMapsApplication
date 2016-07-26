@@ -23,6 +23,7 @@ public class MenuActivity extends AppCompatActivity {
         Button btn3 = (Button)findViewById(R.id.button3);       // 규광이꺼
         Button btn4 = (Button)findViewById(R.id.button4);
         Button btn5 = (Button)findViewById(R.id.button5);       // polyline
+        Button btn6 = (Button)findViewById(R.id.button6);       // photoview
 
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +69,13 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), PolylineActivity .class);
-
+                startActivity(i);
+            }
+        });
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), PhotoviewActivity.class);
                 startActivity(i);
             }
         });

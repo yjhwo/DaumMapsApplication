@@ -3,10 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".URLSchemeActivity"
-    android:backgroundTintMode="screen"
-    android:backgroundTint="@color/accent_material_dark">
+    tools:context="com.estsoft.daummapsapplication.PhotoviewActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/icon"
+        android:background="@drawable/jm3" />
 
 
 </RelativeLayout>

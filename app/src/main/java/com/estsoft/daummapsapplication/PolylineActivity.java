@@ -1,20 +1,21 @@
 package com.estsoft.daummapsapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import net.daum.mf.map.api.CameraUpdateFactory;
-import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapPointBounds;
 import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
 
 public class PolylineActivity extends AppCompatActivity implements MapView.MapViewEventListener{
+    private String url = "daummaps://route?sp=35.8241706,127.1480532&ep=35.8551190,127.1443080&by=FOOT";
+
     private MapView mapView;
     private MapPolyline polyline;
 
@@ -43,6 +44,7 @@ public class PolylineActivity extends AppCompatActivity implements MapView.MapVi
         MapPointBounds mapPointBounds = new MapPointBounds(polyline.getMapPoints());
         int padding = 500; // px
         mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
+
 
     }
 
@@ -79,6 +81,14 @@ public class PolylineActivity extends AppCompatActivity implements MapView.MapVi
         if( clickedLat >= pnt[0].getMapPointGeoCoord().latitude && clickedLat <= pnt[1].getMapPointGeoCoord().latitude &&
                 clickedLong <= pnt[0].getMapPointGeoCoord().longitude && clickedLong >= pnt[1].getMapPointGeoCoord().longitude  ){
             Log.e("polyline","선택");
+
+            // 길찾기로 넘어가게
+            Intent intent = onRoute();
+
+            if(intent!=null)
+                startActivity(intent);
+
+
         }
 
     }
@@ -106,5 +116,25 @@ public class PolylineActivity extends AppCompatActivity implements MapView.MapVi
     @Override
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
 
+    }
+
+
+    private Intent onRoute(){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+
+        CustomSchemeURL daummap = new CustomSchemeURL(this, intent) {
+            @Override
+            public boolean canOpenDaummapURL() {
+                return super.canOpenDaummapURL();
+            }
+        };
+
+        if(daummap.existDaummapApp()){
+            return intent;
+        } else {
+            CustomSchemeURL.openDaummapDownloadPage(this);
+        }
+        return null;
     }
 }
