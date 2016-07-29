@@ -24,6 +24,7 @@ public class MenuActivity extends AppCompatActivity {
         Button btn4 = (Button)findViewById(R.id.button4);
         Button btn5 = (Button)findViewById(R.id.button5);       // polyline
         Button btn6 = (Button)findViewById(R.id.button6);       // photoview
+        Button btn_DBConnect = (Button)findViewById(R.id.btn_DBConnect);     // DB 연동
 
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +77,14 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), PhotoviewActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btn_DBConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GetCityDataActivity.class);
                 startActivity(i);
             }
         });

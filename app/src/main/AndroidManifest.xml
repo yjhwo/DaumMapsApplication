@@ -36,7 +36,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PolylineActivity" />
-        <activity android:name=".PhotoviewActivity"></activity>
+        <activity android:name=".PhotoviewActivity" />
+        <activity android:name=".GetCityDataActivity"></activity>
     </application>
 
 </manifest>
