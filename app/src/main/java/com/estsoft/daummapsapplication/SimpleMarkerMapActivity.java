@@ -47,7 +47,7 @@ public class SimpleMarkerMapActivity extends AppCompatActivity implements MapVie
 
         @Override
         public View getCalloutBalloon(MapPOIItem poiItem) {
-            ((ImageView) mCalloutBalloon.findViewById(R.id.badge)).setImageResource(R.drawable.ic_launcher);
+            ((ImageView) mCalloutBalloon.findViewById(R.id.badge)).setImageResource(R.drawable.jeju);
             ((TextView) mCalloutBalloon.findViewById(R.id.title)).setText(poiItem.getItemName());
             ((TextView) mCalloutBalloon.findViewById(R.id.desc)).setText(((HashMap<String, String>)poiItem.getUserObject()).get("desc"));
 //            ((TextView) mCalloutBalloon.findViewById(R.id.desc)).setText("Custom CalloutBalloon");
@@ -151,7 +151,7 @@ public class SimpleMarkerMapActivity extends AppCompatActivity implements MapVie
 
         mCustomMarker.setCustomImageResourceId(R.drawable.custom_marker_red);
         mCustomMarker.setCustomImageAutoscale(false);
-        mCustomMarker.setCustomImageAnchor(0.5f, 1.0f);
+        mCustomMarker.setCustomImageAnchor(0.5f, 1.0f);     // 마커 이미지중 기준이 되는 위치(앵커포인트) 지정 - 마커 이미지 좌측 상단 기준 x(0.0f ~ 1.0f), y(0.0f ~ 1.0f) 값.
 
         mapView.addPOIItem(mCustomMarker);
         mapView.selectPOIItem(mCustomMarker, true);
@@ -240,6 +240,13 @@ public class SimpleMarkerMapActivity extends AppCompatActivity implements MapVie
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
         Toast.makeText(this, "Clicked " + mapPOIItem.getItemName() + " Callout Balloon", Toast.LENGTH_SHORT).show();
+
+        Log.e("getItemName",mapPOIItem.getItemName()+"");
+        Log.e("getLeftSideButton",mapPOIItem.getLeftSideButtonResourceIdOnCalloutBalloon()+"");
+        Log.e("getRightSideButton",mapPOIItem.getRightSideButtonResourceIdOnCalloutBalloon()+"");
+        Log.e("getSelectedMarkerType",mapPOIItem.getCustomSelectedImageResourceId()+"");
+
+        // 자세히보기 액티비티로 넘어가기
     }
 
     @Override
@@ -249,6 +256,7 @@ public class SimpleMarkerMapActivity extends AppCompatActivity implements MapVie
 
     @Override
     public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+
 
     }
 

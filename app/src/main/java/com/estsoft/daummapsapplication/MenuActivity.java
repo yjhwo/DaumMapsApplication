@@ -19,7 +19,7 @@ public class MenuActivity extends AppCompatActivity {
 
         Button btn0 = (Button)findViewById(R.id.button0);
         Button btn1 = (Button)findViewById(R.id.button1);
-        Button btn2 = (Button)findViewById(R.id.button2);
+        Button btn2 = (Button)findViewById(R.id.button2);       // simplemarker - callout balloon 버튼
         Button btn3 = (Button)findViewById(R.id.button3);       // 규광이꺼
         Button btn4 = (Button)findViewById(R.id.button4);
         Button btn5 = (Button)findViewById(R.id.button5);       // polyline
